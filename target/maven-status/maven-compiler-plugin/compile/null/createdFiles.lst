@@ -1,0 +1,3 @@
+org\acme\cc_approval\model\CreditCard.class
+org\acme\cc_approval\service\CreditCardService.class
+org\acme\cc_approval\model\Applicant.class

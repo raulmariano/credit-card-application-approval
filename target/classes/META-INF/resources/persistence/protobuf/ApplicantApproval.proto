@@ -1,0 +1,52 @@
+syntax = "proto2"; 
+package com.example.ApplicantApproval; 
+import "kogito-index.proto";
+import "kogito-types.proto";
+option kogito_model = "ApplicantApproval";
+option kogito_id = "ApplicantApproval";
+
+/* @Indexed */ 
+message Applicant { 
+	option java_package = "org.acme.cc_approval.model";
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional int32 age = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional int64 annualIncome = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional int32 creditScore = 3; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string name = 4; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional bool student = 5; 
+}
+/* @Indexed */ 
+message ApplicantApproval { 
+	option java_package = "com.example";
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="input") */ 
+	optional Applicant applicant = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="output") */ 
+	optional string approval = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField
+ @VariableInfo(tags="output") */ 
+	optional CreditCard creditCard = 3; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string id = 4; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional org.kie.kogito.index.model.KogitoMetadata metadata = 5; 
+}
+/* @Indexed */ 
+message CreditCard { 
+	option java_package = "org.acme.cc_approval.model";
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string cardHolderName = 1; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string cardNumber = 2; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional double creditLimit = 3; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional string cvv = 4; 
+	/* @Field(index = Index.YES, store = Store.YES) @SortableField */ 
+	optional kogito.Serializable expirationDate = 5[kogito_java_class = "java.time.LocalDate"]; 
+}
